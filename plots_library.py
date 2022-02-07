@@ -47,3 +47,20 @@ class LinfitPlotGenerator(PlotGenerator):
             return figure
         else:
             raise TypeError("data type is not supported")
+
+class MyImShowPlotGenerator(PlotGenerator):
+    def __init__(self) -> None:
+        super().__init__()
+
+    def plot_bokeh(self, figure: Figure, data, **kwargs) -> Renderer:
+        pass
+
+    def plot_matplotlib(self, figure: matplotlibFigure, data, **kwargs):
+        pass
+
+    def plot_plotly(self, figure: go.Figure, data, **kwargs) -> None:
+        fig = px.imshow(data)
+        # fig.data[0].autocolorscale = True
+        figure.add_trace(fig.data[0])
+        return figure
+
