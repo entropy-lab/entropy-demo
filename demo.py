@@ -31,10 +31,32 @@ def node_operation():
 
 node1 = PyNode(label="first_node", program=node_operation, output_vars={'res'})
 
-experiment = Graph(resources=labResources, graph={node1}, label = "int", user='gal',story="run_a")
+experiment = Graph(resources=labResources, graph={node1}, label = "int",story="run_a")
 
 handle = experiment.run()
 
+
+# %% one node with a number
+def node_operation():
+    return {'res': 0}
+
+
+node1 = PyNode(label="first_node", program=node_operation, output_vars={'res'})
+
+experiment = Graph(resources=labResources, graph={node1}, label = "int",story="run_a")
+
+handle = experiment.run()
+
+# %% one node with 2d autoplot
+def node_operation():
+    return {'res': np.random.rand(10,10)}
+
+
+node1 = PyNode(label="first_node", program=node_operation, output_vars={'res'})
+
+experiment = Graph(resources=labResources, graph={node1}, label = "2d-plot", story="run_a")
+
+handle = experiment.run()
 
 
 # %% one node with manual plot
@@ -100,7 +122,7 @@ def node_operation(context: EntropyContext):
 
 node1 = PyNode(label="first_node", program=node_operation, output_vars={'res'})
 
-experiment = Graph(resources=labResources, graph={node1}, user='gal',label='2d data',story="run_a")
+experiment = Graph(resources=labResources, graph={node1},label='2d data',story="run_a")
 
 handle = experiment.run()
 
